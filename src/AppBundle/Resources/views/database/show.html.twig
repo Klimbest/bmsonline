@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Database</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ database.id }}</td>
+            </tr>
+            <tr>
+                <th>Hostname</th>
+                <td>{{ database.hostname }}</td>
+            </tr>
+            <tr>
+                <th>Host_ip</th>
+                <td>{{ database.hostip }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ database.name }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ database.login }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ database.password }}</td>
+            </tr>
+            <tr>
+                <th>Modified</th>
+                <td>{% if database.modified %}{{ database.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('database_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('database_edit', { 'id': database.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

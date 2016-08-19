@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Database list</h1>
+
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Hostname</th>
+                    <th>Host_ip</th>
+                    <th>Name</th>
+                    <th>Login</th>
+                    <th>Password</th>
+                    <th>Modified</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for database in databases %}
+                    <tr>
+                        <td><a href="{{ path('database_show', { 'id': database.id }) }}">{{ database.id }}</a></td>
+                        <td>{{ database.hostname }}</td>
+                        <td>{{ database.hostip }}</td>
+                        <td>{{ database.name }}</td>
+                        <td>{{ database.login }}</td>
+                        <td>{{ database.password }}</td>
+                        <td>{% if database.modified %}{{ database.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            <a href="{{ path('database_show', { 'id': client.id }) }}">
+                                <button class="btn btn-primary">Show</button>
+                            </a>
+                            <a href="{{ path('database_edit', { 'id': client.id }) }}">
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <a href="{{ path('database_new') }}">
+                <button class="btn btn-success"><i class="fa fa-plus"></i> Add database</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

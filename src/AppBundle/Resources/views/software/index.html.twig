@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Software list</h1>
+
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Hostname</th>
+                    <th>Host_ip</th>
+                    <th>Version</th>
+                    <th>Modified</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for software in softwares %}
+                    <tr>
+                        <td><a href="{{ path('software_show', { 'id': software.id }) }}">{{ software.id }}</a></td>
+                        <td>{{ software.hostname }}</td>
+                        <td>{{ software.hostip }}</td>
+                        <td>{{ software.version }}</td>
+                        <td>{% if software.modified %}{{ software.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            <a href="{{ path('software_show', { 'id': client.id }) }}">
+                                <button class="btn btn-primary">Show</button>
+                            </a>
+                            <a href="{{ path('software_edit', { 'id': client.id }) }}">
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <a href="{{ path('software_new') }}">
+                <button class="btn btn-success"><i class="fa fa-plus"></i> Add software</button>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

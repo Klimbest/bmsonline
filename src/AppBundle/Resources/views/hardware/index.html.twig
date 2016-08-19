@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Hardware list</h1>
+
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Uuid</th>
+                    <th>Name</th>
+                    <th>Login</th>
+                    <th>VPN IP</th>
+                    <th>Client</th>
+                    <th>Modified</th>
+                    <th>Is_active</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for hardware in hardwares %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('hardware_show', { 'id': hardware.uuid }) }}">{{ hardware.uuid }}</a>
+                        </td>
+                        <td>{{ hardware.name }}</td>
+                        <td>{{ hardware.login }}</td>
+                        <td>10.8.0.{{ hardware.vpnaddress }}</td>
+                        <td>
+                            {% if hardware.client %}
+                                <a href="{{ path('client_show', { 'id': hardware.client.id }) }}">{{ hardware.client }}</a>
+                            {% endif %}
+                        </td>
+                        <td>{% if hardware.modified %}{{ hardware.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            {% if hardware.isactive %}
+                                <i class="fa fa-check-square-o"></i>
+                            {% else %}
+                                <i class="fa fa-square-o"></i>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('hardware_show', { 'id': hardware.uuid }) }}">
+                                <button class="btn btn-xs btn-primary">Show</button>
+                            </a>
+                            <a href="{{ path('hardware_edit', { 'id': hardware.uuid }) }}">
+                                <button class="btn btn-xs btn-primary">Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <a href="{{ path('hardware_new') }}">
+                <button class="btn btn-success"><i class="fa fa-plus"></i> Add hardware</button>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

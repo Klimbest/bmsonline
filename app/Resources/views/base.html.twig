@@ -1,13 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BmsonLine {% block title %}-{% endblock %} Klimbest</title>
+    {% block stylesheets %}
+        {% stylesheets
+        '@AppBundle/Resources/public/jquery/css/*'
+        '@AppBundle/Resources/public/bootstrap/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="cookie text-center">
+    <span style="background-color: ">Nasza strona używa plików cookie do prawidłowego działania. Pozostając na tej stronie, wyrażasz zgodę na korzystanie z plików cookie.</span><br/>
+    <a href="">
+        <button type="button" class="btn btn-default btn-xs">Polityka prywatności</button>
+    </a>
+    <button id="close-cookie" type="button" class="btn btn-success btn-xs">Ok, rozumiem</button>
+</div>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://bmsonline.pl">Bmsonline</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li>
+                        <a href="{{ path('client_index') }}">
+                            Client <i class="fa fa-users"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('hardware_index') }}">
+                            Hardware <i class="fa fa-hdd-o"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('software_index') }}">
+                            Software <i class="fa fa-internet-explorer"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('database_index') }}">
+                            Database <i class="fa fa-database"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if app.user %}
+                    <li>
+                        <a href="{{ path('logout') }}">
+                            <i class="fa fa-sign-out"></i> Wyloguj</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="">
+                            <i class="fa fa-sign-in"></i> Zaloguj</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {% block body %}
+
+    {% endblock %}
+</div>
+<div class="row well footer-well navbar-fixed-bottom">
+    <div class="col-xs-4">
+        Copyright: Klimbest © 2015-2016<br/>
+        31-752 Kraków, ul. K. Makuszyńskiego 15/3A
+    </div>
+    <div class="col-xs-4 text-center">
+        <strong>Bmsonline</strong><br/>
+        Jest własnością firmy KLIMBEST
+    </div>
+    <div class="col-xs-4 text-right">
+        <a href="">Polityka prywatności</a><br/>
+        <a href="https://plus.google.com/"><i class="fa fa-google-plus-square fa-2x" style="color: #dd4b39"></i></a>
+        <a href="https://twitter.com/"><i class="fa fa-twitter-square fa-2x" style="color: #55acee"></i></a>
+        <a href="https://www.facebook.com/share.php?u=http%3A%2F%2Fwww.bmsonline.pl%2F"><i
+                    class="fa fa-facebook-square fa-2x" style="color: #3b5998"></i></a>
+        <a href="https://www.rss.com/"><i class="fa fa-rss-square fa-2x" style="color: #f26522"></i></a>
+    </div>
+</div>
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/public/jquery/js/*'
+    '@AppBundle/Resources/public/bootstrap/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
 </html>

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Software</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ software.id }}</td>
+            </tr>
+            <tr>
+                <th>Hostname</th>
+                <td>{{ software.hostname }}</td>
+            </tr>
+            <tr>
+                <th>Host_ip</th>
+                <td>{{ software.hostip }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ software.version }}</td>
+            </tr>
+            <tr>
+                <th>Modified</th>
+                <td>{% if software.modified %}{{ software.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('software_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('software_edit', { 'id': software.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
