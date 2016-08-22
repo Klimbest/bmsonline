@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BmsonLine {% block title %}-{% endblock %} Klimbest</title>
     {% block stylesheets %}
-        {% stylesheets 'css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}"/>
-        {% endstylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/csshake.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/jquery.datetimepicker.css') }}"/>
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -97,9 +99,15 @@
     </div>
 </div>
 {% block javascripts %}
-    {% javascripts 'js/*' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <script src="{{ asset('js/__jquery-1.11.3.js') }}"></script>
+    <script src="{{ asset('js/_bootstrap.js') }}"></script>
+    <script src="{{ asset('js/ajaxq.js') }}"></script>
+    <script src="{{ asset('js/jquery.ae.image.resize.js') }}"></script>
+    <script src="{{ asset('js/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.js') }}"></script>
+    <script src="{{ asset('js/jquery.formatDateTime.js') }}"></script>
+    <script src="{{ asset('js/jquery.ui.resizable.snap.ext.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
 {% endblock %}
 </body>
 </html>
