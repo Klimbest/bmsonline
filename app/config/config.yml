@@ -74,3 +74,23 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+    bundles: [ 'AppBundle' ]
+    assets:
+        font-awesome-ttf:
+            inputs: '@AppBundle/Resources/public/fonts/fontawesome-webfont.ttf'
+            output: 'fonts/fontawesome-webfont.ttf'
+        font-awesome-woff:
+            inputs: '@AppBundle/Resources/public/fonts/fontawesome-webfont.woff'
+            output: 'fonts/fontawesome-webfont.woff'
+        font-awesome-woff2:
+            inputs: '@AppBundle/Resources/public/fonts/fontawesome-webfont.woff2'
+            output: 'fonts/fontawesome-webfont.woff2'
+        font-awesome-svg:
+            inputs: '@AppBundle/Resources/public/fonts/fontawesome-webfont.svg'
+            output: 'fonts/fontawesome-webfont.svg'
+        font-awesome-eot:
+            inputs: '@AppBundle/Resources/public/fonts/fontawesome-webfont.eot'
+            output: 'fonts/fontawesome-webfont.eot'
+        font-awesome-otf:
+            inputs: '@AppBundle/Resources/public/fonts/FontAwesome.otf'
+            output: 'fonts/FontAwesome.otf'

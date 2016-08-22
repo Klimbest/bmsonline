@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BmsonLine {% block title %}-{% endblock %} Klimbest</title>
     {% block stylesheets %}
-        {% stylesheets
-        '@AppBundle/Resources/public/jquery/css/*'
-        '@AppBundle/Resources/public/bootstrap/css/*' filter='cssrewrite' %}
+        {% stylesheets '@AppBundle/Resources/public/css/*' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
     {% endblock %}
@@ -99,9 +97,7 @@
     </div>
 </div>
 {% block javascripts %}
-    {% javascripts
-    '@AppBundle/Resources/public/jquery/js/*'
-    '@AppBundle/Resources/public/bootstrap/js/*' %}
+    {% javascripts '@AppBundle/Resources/public/js/*' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
