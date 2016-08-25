@@ -61,6 +61,13 @@ class Hardware
      */
     private $client;
 
+    /**
+     * @var HardwareSSDReport
+     * @ORM\OneToMany(targetEntity="HardwareSSDReport", mappedBy="hardware")
+     */
+    private $hardware_ssd_report;
+
+
     public function __toString()
     {
         return $this->uuid;
@@ -254,5 +261,46 @@ class Hardware
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->hardware_ssd_report = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add hardwareSsdReport
+     *
+     * @param \AppBundle\Entity\HardwareSSDReport $hardwareSsdReport
+     *
+     * @return Hardware
+     */
+    public function addHardwareSsdReport(\AppBundle\Entity\HardwareSSDReport $hardwareSsdReport)
+    {
+        $this->hardware_ssd_report[] = $hardwareSsdReport;
+
+        return $this;
+    }
+
+    /**
+     * Remove hardwareSsdReport
+     *
+     * @param \AppBundle\Entity\HardwareSSDReport $hardwareSsdReport
+     */
+    public function removeHardwareSsdReport(\AppBundle\Entity\HardwareSSDReport $hardwareSsdReport)
+    {
+        $this->hardware_ssd_report->removeElement($hardwareSsdReport);
+    }
+
+    /**
+     * Get hardwareSsdReport
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHardwareSsdReport()
+    {
+        return $this->hardware_ssd_report;
     }
 }
