@@ -35,6 +35,7 @@
                 <thead>
                 <tr>
                     <th>TIME</th>
+                    <th>Space</th>
                     <th>Growth</th>
                 </tr>
                 </thead>
@@ -42,7 +43,8 @@
                 {% for record in ssd_report %}
                     <tr>
                         <td>{{ record.added|date('Y-m-d H:i') }}</td>
-                        <td>{{ (record.deltaSpace/1024)|round(2, 'floor') }} MB</td>
+                        <td>{{ (record.space/1024)|round(2, 'floor') }} MB</td>
+                        <td>{{ (record.spaceGrowth/1024)|round(2, 'floor') }} MB</td>
                     </tr>
                 {% endfor %}
                 </tbody>

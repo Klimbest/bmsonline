@@ -21,9 +21,15 @@ class HardwareSSDReport
 
     /**
      *
-     * @ORM\Column(name="delta_space", type="bigint", nullable=false)
+     * @ORM\Column(name="space", type="bigint", nullable=false)
      */
-    private $delta_space;
+    private $space;
+
+    /**
+     *
+     * @ORM\Column(name="space_growth", type="bigint", nullable=false)
+     */
+    private $space_growth;
 
     /**
      * @var \DateTime
@@ -49,30 +55,6 @@ class HardwareSSDReport
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set deltaSpace
-     *
-     * @param integer $deltaSpace
-     *
-     * @return HardwareSSDReport
-     */
-    public function setDeltaSpace($deltaSpace)
-    {
-        $this->delta_space = $deltaSpace;
-
-        return $this;
-    }
-
-    /**
-     * Get deltaSpace
-     *
-     * @return integer
-     */
-    public function getDeltaSpace()
-    {
-        return $this->delta_space;
     }
 
     /**
@@ -120,5 +102,53 @@ class HardwareSSDReport
     public function getHardware()
     {
         return $this->hardware;
+    }
+
+    /**
+     * Set spaceGrowth
+     *
+     * @param integer $spaceGrowth
+     *
+     * @return HardwareSSDReport
+     */
+    public function setSpaceGrowth($spaceGrowth)
+    {
+        $this->space_growth = $spaceGrowth;
+
+        return $this;
+    }
+
+    /**
+     * Get spaceGrowth
+     *
+     * @return integer
+     */
+    public function getSpaceGrowth()
+    {
+        return $this->space_growth;
+    }
+
+    /**
+     * Set space
+     *
+     * @param integer $space
+     *
+     * @return HardwareSSDReport
+     */
+    public function setSpace($space)
+    {
+        $this->space = $space;
+
+        return $this;
+    }
+
+    /**
+     * Get space
+     *
+     * @return integer
+     */
+    public function getSpace()
+    {
+        return $this->space;
     }
 }
