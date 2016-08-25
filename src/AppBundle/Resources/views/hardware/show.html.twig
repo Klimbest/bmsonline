@@ -1,48 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hardware</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Hardware</h1>
+            <table class="table table-stripped">
+                <tbody>
+                <tr>
+                    <th>Uuid</th>
+                    <td>{{ hardware.uuid }}</td>
+                </tr>
+                <tr>
+                    <th>Login</th>
+                    <td>{{ hardware.login }}</td>
+                </tr>
+                <tr>
+                    <th>Vpn_address</th>
+                    <td>{{ hardware.vpnaddress }}</td>
+                </tr>
+                <tr>
+                    <th>Modified</th>
+                    <td>{% if hardware.modified %}{{ hardware.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Is_active</th>
+                    <td>{% if hardware.isactive %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h1>Data Growth</h1>
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>TIME</th>
+                    <th>Growth</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for record in ssd_report %}
+                    <tr>
+                        <td>{{ record.added|date('Y-m-d H:i') }}</td>
+                        <td>{{ (record.deltaSpace/1024)|round(2, 'floor') }} MB</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Uuid</th>
-                <td>{{ hardware.uuid }}</td>
-            </tr>
-            <tr>
-                <th>Login</th>
-                <td>{{ hardware.login }}</td>
-            </tr>
-            <tr>
-                <th>Vpn_address</th>
-                <td>{{ hardware.vpnaddress }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ hardware.password }}</td>
-            </tr>
-            <tr>
-                <th>Modified</th>
-                <td>{% if hardware.modified %}{{ hardware.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Is_active</th>
-                <td>{% if hardware.isactive %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('hardware_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('hardware_edit', { 'id': hardware.uuid }) }}">Edit</a>
-        </li>
-        <li>
+    <div class="row">
+        <div class="col-md-10">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <div class="btn-group" role="group">
+                <a href="{{ path('hardware_index') }}" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Back to the list</a>
+                <a href="{{ path('hardware_edit', { 'id': hardware.uuid }) }}" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+                <button class="btn btn-danger" type="submit"><i class="fa fa-trash-o"></i> Delete</button>
+            </div>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
 {% endblock %}

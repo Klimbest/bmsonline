@@ -1,21 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Database edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('database_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Database edit</h1>
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <div class="btn-group" role="group">
+                <a class="btn btn-warning" href="{{ path('database_index') }}"><i class="fa fa-arrow-left"></i> Back to the list</a>
+                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
 {% endblock %}

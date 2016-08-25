@@ -23,23 +23,21 @@
                         <td>{{ client.name }}</td>
                         <td>
                             <ul>
-                            {% for h in client.clientHardware %}
-                                <li>
-                                    <a href="{{ path('hardware_show', { 'id': h.uuid }) }}">{{ h }}</a>
-                                </li>
-                            {% endfor %}
+                                {% for h in client.clientHardware %}
+                                    <li>
+                                        <a href="{{ path('hardware_show', { 'id': h.uuid }) }}">{{ h }}</a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         </td>
                         <td>{{ client.address }}</td>
                         <td>{{ client.phone }}</td>
                         <td>{% if client.modified %}{{ client.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                            <a href="{{ path('client_show', { 'id': client.id }) }}">
-                                <button class="btn btn-xs btn-primary">Show</button>
-                            </a>
-                            <a href="{{ path('client_edit', { 'id': client.id }) }}">
-                                <button class="btn btn-xs btn-primary">Edit</button>
-                            </a>
+                            <div class="btn-group" role="group">
+                                <a href="{{ path('client_show', { 'id': client.id }) }}" class="btn btn-xs btn-primary">Show</a>
+                                <a href="{{ path('client_edit', { 'id': client.id }) }}" class="btn btn-xs btn-primary">Edit</a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -49,11 +47,8 @@
     </div>
     <div class="row">
         <div class="col-md-10">
-            <a href="{{ path('client_new') }}">
-                <button class="btn btn-success"><i class="fa fa-plus"></i> Add client</button>
-            </a>
+            <a href="{{ path('client_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add client</a>
         </div>
     </div>
-
 
 {% endblock %}

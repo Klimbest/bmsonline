@@ -19,7 +19,7 @@ class DatabaseType extends AbstractType
     {
         $builder
             ->add('hostname')
-            ->add('host_ip', TextType::)
+            ->add('host_ip')
             ->add('name')
             ->add('login')
             ->add('password')

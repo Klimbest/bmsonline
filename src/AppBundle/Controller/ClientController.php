@@ -84,7 +84,6 @@ class ClientController extends Controller
      */
     public function editAction(Request $request, Client $client)
     {
-        $deleteForm = $this->createDeleteForm($client);
         $editForm = $this->createForm('AppBundle\Form\ClientType', $client);
         $editForm->handleRequest($request);
 
@@ -93,13 +92,12 @@ class ClientController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_edit', array('id' => $client->getId()));
+            return $this->redirectToRoute('client_show', array('id' => $client->getId()));
         }
 
         return $this->render('AppBundle:client:edit.html.twig', array(
             'client' => $client,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 

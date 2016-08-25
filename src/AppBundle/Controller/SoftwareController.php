@@ -83,7 +83,6 @@ class SoftwareController extends Controller
      */
     public function editAction(Request $request, Software $software)
     {
-        $deleteForm = $this->createDeleteForm($software);
         $editForm = $this->createForm('AppBundle\Form\SoftwareType', $software);
         $editForm->handleRequest($request);
 
@@ -92,13 +91,12 @@ class SoftwareController extends Controller
             $em->persist($software);
             $em->flush();
 
-            return $this->redirectToRoute('software_edit', array('id' => $software->getId()));
+            return $this->redirectToRoute('software_show', array('id' => $software->getId()));
         }
 
         return $this->render('AppBundle:software:edit.html.twig', array(
             'software' => $software,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 

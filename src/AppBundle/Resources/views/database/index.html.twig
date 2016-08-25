@@ -29,12 +29,10 @@
                         <td>{{ database.password }}</td>
                         <td>{% if database.modified %}{{ database.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                            <a href="{{ path('database_show', { 'id': client.id }) }}">
-                                <button class="btn btn-primary">Show</button>
-                            </a>
-                            <a href="{{ path('database_edit', { 'id': client.id }) }}">
-                                <button class="btn btn-primary">Edit</button>
-                            </a>
+                            <div class="btn-group" role="group">
+                                <a href="{{ path('database_show', { 'id': database.id }) }}" class="btn btn-xs btn-primary">Show</a>
+                                <a href="{{ path('database_edit', { 'id': database.id }) }}" class="btn btn-xs btn-primary">Edit</a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -45,9 +43,7 @@
 
     <div class="row">
         <div class="col-md-10">
-            <a href="{{ path('database_new') }}">
-                <button class="btn btn-success"><i class="fa fa-plus"></i> Add database</button>
-            </a>
+            <a href="{{ path('database_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add database</a>
         </div>
     </div>
 {% endblock %}

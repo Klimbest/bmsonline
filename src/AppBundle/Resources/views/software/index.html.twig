@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Software list</h1>
-
             <table class="table table-stripped">
                 <thead>
                 <tr>
@@ -25,12 +24,10 @@
                         <td>{{ software.version }}</td>
                         <td>{% if software.modified %}{{ software.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                            <a href="{{ path('software_show', { 'id': client.id }) }}">
-                                <button class="btn btn-primary">Show</button>
-                            </a>
-                            <a href="{{ path('software_edit', { 'id': client.id }) }}">
-                                <button class="btn btn-primary">Edit</button>
-                            </a>
+                            <div class="btn-group" role="group">
+                                <a href="{{ path('software_show', { 'id': software.id }) }}" class="btn btn-xs btn-primary">Show</a>
+                                <a href="{{ path('software_edit', { 'id': software.id }) }}" class="btn btn-xs btn-primary">Edit</a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -40,9 +37,7 @@
     </div>
     <div class="row">
         <div class="col-md-10">
-            <a href="{{ path('software_new') }}">
-                <button class="btn btn-success"><i class="fa fa-plus"></i> Add software</button>
-            </a>
+            <a href="{{ path('software_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add software</a>
         </div>
     </div>
 

@@ -67,10 +67,13 @@ class HardwareController extends Controller
      */
     public function showAction(Hardware $hardware)
     {
+        $em = $this->getDoctrine()->getManager();
+        $ssdReport = $em->getRepository('AppBundle:HardwareSSDReport')->findBy(['hardware' => $hardware->getUuid()]);
         $deleteForm = $this->createDeleteForm($hardware);
 
         return $this->render('AppBundle:hardware:show.html.twig', array(
             'hardware' => $hardware,
+            'ssd_report' => $ssdReport,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -83,7 +86,6 @@ class HardwareController extends Controller
      */
     public function editAction(Request $request, Hardware $hardware)
     {
-        $deleteForm = $this->createDeleteForm($hardware);
         $editForm = $this->createForm('AppBundle\Form\HardwareType', $hardware);
         $editForm->handleRequest($request);
 
@@ -92,13 +94,12 @@ class HardwareController extends Controller
             $em->persist($hardware);
             $em->flush();
 
-            return $this->redirectToRoute('hardware_edit', array('id' => $hardware->getUuid()));
+            return $this->redirectToRoute('hardware_show', array('id' => $hardware->getUuid()));
         }
 
         return $this->render('AppBundle:hardware:edit.html.twig', array(
             'hardware' => $hardware,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 

@@ -4,7 +4,6 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Hardware list</h1>
-
             <table class="table table-stripped">
                 <thead>
                 <tr>
@@ -26,13 +25,19 @@
                         </td>
                         <td>{{ hardware.name }}</td>
                         <td>{{ hardware.login }}</td>
-                        <td>10.8.0.{{ hardware.vpnaddress }}</td>
+                        <td>
+                            <a href="http://10.8.0.{{ hardware.vpnaddress }}" target="_blank">10.8.0.{{ hardware.vpnaddress }}</a>
+                        </td>
                         <td>
                             {% if hardware.client %}
                                 <a href="{{ path('client_show', { 'id': hardware.client.id }) }}">{{ hardware.client }}</a>
                             {% endif %}
                         </td>
-                        <td>{% if hardware.modified %}{{ hardware.modified|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            {% if hardware.modified %}
+                                {{ hardware.modified|date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
                         <td>
                             {% if hardware.isactive %}
                                 <i class="fa fa-check-square-o"></i>
@@ -41,12 +46,10 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{{ path('hardware_show', { 'id': hardware.uuid }) }}">
-                                <button class="btn btn-xs btn-primary">Show</button>
-                            </a>
-                            <a href="{{ path('hardware_edit', { 'id': hardware.uuid }) }}">
-                                <button class="btn btn-xs btn-primary">Edit</button>
-                            </a>
+                            <div class="btn-group" role="group">
+                                <a href="{{ path('hardware_show', { 'id': hardware.uuid }) }}" class="btn btn-xs btn-primary">Show</a>
+                                <a href="{{ path('hardware_edit', { 'id': hardware.uuid }) }}" class="btn btn-xs btn-primary">Edit</a>
+                            </div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -56,9 +59,7 @@
     </div>
     <div class="row">
         <div class="col-md-10">
-            <a href="{{ path('hardware_new') }}">
-                <button class="btn btn-success"><i class="fa fa-plus"></i> Add hardware</button>
-            </a>
+            <a href="{{ path('hardware_new') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add hardware</a>
         </div>
     </div>
 

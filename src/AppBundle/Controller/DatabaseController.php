@@ -83,7 +83,6 @@ class DatabaseController extends Controller
      */
     public function editAction(Request $request, Database $database)
     {
-        $deleteForm = $this->createDeleteForm($database);
         $editForm = $this->createForm('AppBundle\Form\DatabaseType', $database);
         $editForm->handleRequest($request);
 
@@ -92,13 +91,12 @@ class DatabaseController extends Controller
             $em->persist($database);
             $em->flush();
 
-            return $this->redirectToRoute('database_edit', array('id' => $database->getId()));
+            return $this->redirectToRoute('database_show', array('id' => $database->getId()));
         }
 
         return $this->render('AppBundle:database:edit.html.twig', array(
             'database' => $database,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
